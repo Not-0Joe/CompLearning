@@ -26,9 +26,6 @@ Provide a constructor and a print() function.*/
 b) Now add a member function named distanceTo() that takes another Point2d as a parameter, and calculates the distance between them. Given two points (x1, y1) and (x2, y2), the distance between them can be calculated using the formula
 std::sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2)). The std::sqrt function lives in header cmath.*/
 
-
-
-
 class Point2d
 {
 public:
@@ -65,23 +62,21 @@ public:
 
     Fraction() = default;
 
-    Fraction(int x, int y) : m_numerator{ x }, m_denmoninator{ y } {}
+    // explict so it can not be used to do any converstions
+    explicit Fraction(int x, int y) : m_numerator{ x }, m_denominator{ y } {}
 
-    explicit Fraction(int x) : m_numerator {x}, m_denmoninator {0} {}
-
-    int Multiply(const Fraction f) const
+    Fraction multiply(const Fraction& f) const
     {
-        return m_numerator * f.m_denmoninator, m_denmoninator* f.m_denmoninator;
+        return Fraction{ m_numerator * f.m_numerator, m_denominator * f.m_denominator };
     }
 
     void printFraction() const
     {
-        std::cout << m_numerator << "/" << m_denmoninator << "\n";
+        std::cout << m_numerator << "/" << m_denominator << "\n";
     }
     
-
 private:
     
     int m_numerator = 0;
-    int m_denmoninator = 1;
+    int m_denominator = 1;
 };

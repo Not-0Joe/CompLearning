@@ -1,7 +1,6 @@
 // main.cpp : This file contains the 'main' function. Program execution begins and ends there.
-
-// this program will consist of my notes and diffrent uses of c++ and what i have learned so far
-// there will be lots of comments to document my learning
+// This program consists of my notes and different uses of C++ based on what I have learned so far.
+// There are extensive comments to document my learning process.
 
 #include <iostream>
 #include "ExplictClass.h"
@@ -9,70 +8,72 @@
 #include "constexprClassExample.h"
 #include "chaper14QuizClass.h"
 
-
 int main()
 {
-	// seeing if we pass in an int to a function that takes a Convert class if it will use the
-	// user-defined constructor
-
+	// Testing if passing an int to a function that takes a 'Convert' class 
+	// will trigger the use of the user-defined converting constructor.
 	convertPrint(5);
 
-	// testing the use of a class using the explicit keyword
+	
+	
+	// convertPrint is called with an int argument. Since convertPrint expects a 'Convert' class type,
+	// the compiler looks for any user-defined converting constructors. It finds 'Convert(int x)',
+	// converts the int into a 'Convert' object, and passes that object as the argument.
 
-	// works like a normal constructor init the member variable of imExplicit 
-	Explicit imExplicit{ 5,5 };
+	// --- Testing the use of a class using the 'explicit' keyword ---
 
-	// lets try doing a print requiring a converstion
+	// Works like a normal constructor, initializing the member variables of 'imExplicit'.
+	Explicit imExplicit{ 5, 5 };
 
-	// convertExplictPrint(5); // if we uncomment this line we get a compilation error since convertion is forbidden on the constructor this calls
+	// Attempting a function call that requires an implicit conversion.
+	// convertExplictPrint(5); // Uncommenting this results in a compilation error because conversion is forbidden by the 'explicit' keyword.
 
-	// what if we wanted to use an do a converstion on an explicit constructor we can do a work around if we "explicitly" define the object ourself
-
+	// If we want to use an explicit constructor, we can bypass the restriction 
+	// by "explicitly" creating the object ourselves.
 	std::cout << "Calling explicit constructor with Explicit{5}\n";
 	convertExplictPrint(Explicit{ 5 });
 
-	// we can also use static_cast to cast into our desired object 
-
+	// We can also use static_cast to explicitly cast the value into our desired object type.
 	std::cout << "Calling explicit constructor with static_cast(7)\n";
 	convertExplictPrint(static_cast<Explicit>(7));
 
-	/*Best practice
+	/*Best practice :
+	Make any constructor that accepts a single argument 'explicit' by default.
+	If an implicit conversion is semantically equivalent and performant,
+	you may consider making it non-explicit. */
 
-	Make any constructor that accepts a single argument explicit by default. If an implicit conversion between types is both semantically equivalent and performant,
-	you can consider making the constructor non-explicit*/
 
-	// 14.17 — Constexpr classes
+	// --- 14.17 — Constexpr classes ---
 
-	// constexpr class object 
+	// A constexpr class object.
 	constexpr ConstexprClass constexprClass{ 5, 6 };
 
-	// constexpr member function called just like normal function
+	// A constexpr member function can be called just like a normal function.
 	std::cout << constexprClass.getGreater() << "\n";
 
-	// non constexpr class object calling a constexpr member function
-	// this works since the constexpr member function is "dual-use" meaning it can be called by a constexpr object or a non constexpr object
-	ConstexprClass constexprClass2{ 6,7 };
+	// A non-constexpr class object calling a constexpr member function.
+	// This works because constexpr member functions are "dual-use," meaning 
+	// they can be called by both constexpr and non-constexpr objects.
+	ConstexprClass constexprClass2{ 6, 7 };
 	std::cout << constexprClass2.getGreater() << "\n";
 
-	// CHAPTER 14 QUIZ 
+	// --- CHAPTER 14 QUIZ ---
 
 	Point2d first{};
 	Point2d second{ 3.0, 4.0 };
 
-	// Point2d third{ 4.0 }; // should error if uncommented
+	// Point2d third{ 4.0 }; // Should error if uncommented (requires two arguments or default).
 
 	first.print();
 	second.print();
 
 	std::cout << "Distance between two points: " << first.distanceTo(second) << '\n';
 
-	Fraction fraction1{ 5,6 };
-	Fraction fraction2{ 6,7 };
+	Fraction fraction1{ 5, 6 };
+	Fraction fraction2{ 6, 7 };
 	
-	std::cout << "Result of multiplying fractions " << fraction1.Multiply(fraction2) << "\n";
+	fraction1.multiply(fraction2).printFraction();
+	std::cout << "\n";
 
-	}
-
-// convertPrint is called with an int agument since convertPrint takes a Convert class type the complier looks to see if there
-// are any user defined converting constructors and it see the Convert(int x) constructor it then converts the int into a Convert Object
-// and returns it that Convert Object is now passed as an agument to ConvertPrint
+	return 0;
+}
