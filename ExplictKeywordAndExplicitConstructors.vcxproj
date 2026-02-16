@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="organizedClass.cpp" />
     <ClInclude Include="chaper14QuizClass.h" />
     <ClInclude Include="constexprClassExample.h" />
     <ClCompile Include="constexprFunctionExample.cpp" />
@@ -135,6 +136,8 @@
     <ClInclude Include="ConversionClass.h" />
     <ClInclude Include="ExplictClass.h" />
     <ClCompile Include="main.cpp" />
+    <ClInclude Include="organized Class.h" />
+    <ClInclude Include="organizedClass.h" />
     <ClInclude Include="ThisExample.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -8,6 +8,8 @@
 #include "constexprClassExample.h"
 #include "chaper14QuizClass.h"
 #include "ThisExample.h"
+#include "organizedClass.h"
+
 
 int main()
 {
@@ -84,7 +86,7 @@ int main()
 	// Inside every member function, the keyword this is a const pointer that holds the address of the current implicit object.
 	
 	// this is a pointer to the implicit object and -> is used to access members of the implicit object.
-	// when we complie the codc
+	
 	// complier adds this->
 	Simple simple{ 5 };
 	// we explictly add this->3
@@ -97,10 +99,33 @@ int main()
 	chains.addX(10).addX(10).printX();
 
 	// using *this to reset an object to its default state
-
 	chains.resetObject().printX();
 
+	// this is a const pointer meaning it can not change what it is pointing to, but the data at the address can be modifyed
+	// the reason is not a refrence is because when it was implmented into c++ refrences were not yet a feature of the language,
+	// in other languages like java and c#, this is implemented as a reference
 
+	// -- 15.2 — Classes and header files --
+
+	// as our programs get larger and more complex, we will want to split our code into multiple files
+	// as we have been doing putting our class definitions in header files and function definitions in cpp files, then including the header file 
+	// we can do the same for class definitions and member function definitions
+
+	// so we make a header file with the class definition and function prototypes
+	// then we make a cpp with the function definitions we just need to use :: to specify that the function is a member of the class
+	// we should also keep the name of the header file and the cpp file the same to make it clear that they are related
+
+	// see example in organizedClass.h and organizedClass.cpp
+
+	OrganizedClass organizedClass{ 5 };
+	organizedClass.printX();
+
+	// it may have been beter to just make print a non member funtion in its own cpp file, 
+	// but this is just to show how we can separate the declaration and definition of a class into a header file and a source file
+
+
+
+	
 
 	return 0;
 }
