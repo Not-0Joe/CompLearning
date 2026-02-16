@@ -127,6 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="chaper14QuizClass.h" />
+    <ClInclude Include="constexprClassExample.h" />
+    <ClCompile Include="constexprFunctionExample.cpp" />
     <ClCompile Include="ConvertExplicit.cpp" />
     <ClCompile Include="ConvertPrint.cpp" />
     <ClInclude Include="ConversionClass.h" />

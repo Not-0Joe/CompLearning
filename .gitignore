@@ -1,0 +1,11 @@
+# MSVC Build Outputs
+x64/
+Debug/
+Release/
+
+# MSVC Project User files
+*.vcxproj.user
+*.vcxproj.filters
+
+# Visual Studio hidden folder
+.vs/
