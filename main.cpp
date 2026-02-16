@@ -7,6 +7,7 @@
 #include "ConversionClass.h"
 #include "constexprClassExample.h"
 #include "chaper14QuizClass.h"
+#include "ThisExample.h"
 
 int main()
 {
@@ -69,11 +70,37 @@ int main()
 
 	std::cout << "Distance between two points: " << first.distanceTo(second) << '\n';
 
+	// take some time to understand why this function returns a Fraction object
+	// and the result of calling printFraction()
+
 	Fraction fraction1{ 5, 6 };
 	Fraction fraction2{ 6, 7 };
 	
 	fraction1.multiply(fraction2).printFraction();
 	std::cout << "\n";
+
+	// --- 15.1 — The hidden “this” pointer and member function chaining ---
+
+	// Inside every member function, the keyword this is a const pointer that holds the address of the current implicit object.
+	
+	// this is a pointer to the implicit object and -> is used to access members of the implicit object.
+	// when we complie the codc
+	// complier adds this->
+	Simple simple{ 5 };
+	// we explictly add this->3
+	Simple2 simple2{ 6 };
+	// using this-> to disambiguate
+	simple2.printData(5);
+
+	// Returning *this from a member function allows for chaining multiple member function calls on the same object.
+	Chains chains{ 5 };
+	chains.addX(10).addX(10).printX();
+
+	// using *this to reset an object to its default state
+
+	chains.resetObject().printX();
+
+
 
 	return 0;
 }

@@ -135,6 +135,7 @@
     <ClInclude Include="ConversionClass.h" />
     <ClInclude Include="ExplictClass.h" />
     <ClCompile Include="main.cpp" />
+    <ClInclude Include="ThisExample.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
