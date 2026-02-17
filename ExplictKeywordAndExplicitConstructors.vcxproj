@@ -136,6 +136,7 @@
     <ClInclude Include="ConversionClass.h" />
     <ClInclude Include="ExplictClass.h" />
     <ClCompile Include="main.cpp" />
+    <ClInclude Include="InlineClass.h" />
     <ClInclude Include="organized Class.h" />
     <ClInclude Include="organizedClass.h" />
     <ClInclude Include="ThisExample.h" />

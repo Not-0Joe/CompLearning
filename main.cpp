@@ -9,6 +9,7 @@
 #include "chaper14QuizClass.h"
 #include "ThisExample.h"
 #include "organizedClass.h"
+#include "InlineClass.h"
 
 
 int main()
@@ -123,7 +124,30 @@ int main()
 	// it may have been beter to just make print a non member funtion in its own cpp file, 
 	// but this is just to show how we can separate the declaration and definition of a class into a header file and a source file
 
+	// -- inline member functions --
 
+	// functions are not ODR exempt, meaning that if we define a function in a header file, and include that header file in multiple cpp files, 
+	// we will get a linker error because the function is defined in multiple translation units violating the ORD rule
+
+	// but since member functions defined inside a class definition are implicitly inline we are able to define them in a header file that is included into
+	// multiple cpp files without getting a linker error
+
+	// when the complier see a inlined function it replaces the call with the code of the function 
+
+	// we just went over spliting the declaration and definition of a class into a header file and a source file,
+	// but since our soruce file is outside of the class definition the member functions are not implicitly inline
+
+	// but this is ok since if we include the header file it does not include the source file,
+	// so we will not get a linker error because the function is only defined in one translation unit
+
+	// but if we have non member functions defined in a header file that is included in multiple cpp files, 
+	// we will get a linker error because the function is defined in multiple translation units violating the ORD rule
+
+	// we can fix this just by marking the non member functions defined the class header file as inline
+ 
+	InlineClass inlineClass{ 10 };
+
+	std::cout << "InlineClass getX() result: " << inlineClass.getX() << "\n";
 
 	
 
