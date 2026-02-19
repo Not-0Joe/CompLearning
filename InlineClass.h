@@ -28,3 +28,8 @@ inline void printX(const InlineClass& c)
 {
 	std::cout << "m_x = " << c.getX() << "\n";
 }
+
+// if we were to use a separate source file for this function, 
+// we would not need to mark it as inline because it would only be defined in one translation unit, 
+
+// same concept applies to member functions defined in a source file, they do not need to be marked as inline because they are only defined in one translation unit.

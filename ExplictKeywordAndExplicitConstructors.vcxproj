@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="NestedClass.cpp" />
     <ClCompile Include="organizedClass.cpp" />
     <ClInclude Include="chaper14QuizClass.h" />
     <ClInclude Include="constexprClassExample.h" />
@@ -137,7 +138,7 @@
     <ClInclude Include="ExplictClass.h" />
     <ClCompile Include="main.cpp" />
     <ClInclude Include="InlineClass.h" />
-    <ClInclude Include="organized Class.h" />
+    <ClInclude Include="NestedClass.h" />
     <ClInclude Include="organizedClass.h" />
     <ClInclude Include="ThisExample.h" />
   </ItemGroup>

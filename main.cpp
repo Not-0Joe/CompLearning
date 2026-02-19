@@ -10,6 +10,7 @@
 #include "ThisExample.h"
 #include "organizedClass.h"
 #include "InlineClass.h"
+#include "NestedClass.h"
 
 
 int main()
@@ -18,8 +19,6 @@ int main()
 	// will trigger the use of the user-defined converting constructor.
 	convertPrint(5);
 
-	
-	
 	// convertPrint is called with an int argument. Since convertPrint expects a 'Convert' class type,
 	// the compiler looks for any user-defined converting constructors. It finds 'Convert(int x)',
 	// converts the int into a 'Convert' object, and passes that object as the argument.
@@ -149,7 +148,37 @@ int main()
 
 	std::cout << "InlineClass getX() result: " << inlineClass.getX() << "\n";
 
+	// so the order of things would be:
+	// if the class is small and simple we can define the member functions inside of the class definition
+	// if the class is larger and has more complex member functions we should consider, if we can separate the member function into non member functions and pass by const ref to them
+	// with a larger class we should separate the declaration and definition of the class into a header file and a source file with the same name
+	// inside the source file we inclide the header and then use :: to specify that the function is a member of the class
+	// put the public member functions at the top of the class definition and the private member variables at the bottom of the class definition
+
+	// if we do make a member function into a non member function we need to mark it as inline to avoid linker errors incase we include that header file into multiple cpp files
+	// if we know for cretain that a function will only be used in one cpp file, we can just define it in that cpp file and not mark it as inline
+
+	// -- 15.3 — Nested types (member types) -- 
+
+	// we can nest types inside of a class definition, we should do this if the type is related to the class like an atribute
+	// we must place the type at the top of the class definition, we will be using an enum and the public will need to be able to access it
+	// inside of a class definition we can just use the name of the nested types members without :: 
+	// outside of the class definition we need to use the class name and :: to access the nested type and its members
 	
+	// see NestedClass.h and NestedClass.cpp for an example of this
+
+	NestedClass nestedClass{};
+	nestedClass.getColor();
+
+	nestedClass.setColor(NestedClass::Red);
+	nestedClass.getColor();
+
+	nestedClass.printInfo();
+
+	// as we can see we can access the nested type and its members using the class name and ::
+	// also this just returns the int value of the enum members of color
+	// i could make a function that takes and enum and returns its corresponding string name
+
 
 	return 0;
 }
