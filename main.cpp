@@ -11,6 +11,7 @@
 #include "organizedClass.h"
 #include "InlineClass.h"
 #include "NestedClass.h"
+#include "deconstructorExample.h"
 
 
 int main()
@@ -161,23 +162,42 @@ int main()
 	// -- 15.3 — Nested types (member types) -- 
 
 	// we can nest types inside of a class definition, we should do this if the type is related to the class like an atribute
-	// we must place the type at the top of the class definition, we will be using an enum and the public will need to be able to access it
-	// inside of a class definition we can just use the name of the nested types members without :: 
+	// we must place the type at the top of the class definition, nested types must be defined before they are used in the class definition
 	// outside of the class definition we need to use the class name and :: to access the nested type and its members
 	
 	// see NestedClass.h and NestedClass.cpp for an example of this
 
 	NestedClass nestedClass{};
 	nestedClass.getColor();
-
 	nestedClass.setColor(NestedClass::Red);
 	nestedClass.getColor();
-
 	nestedClass.printInfo();
 
+
 	// as we can see we can access the nested type and its members using the class name and ::
-	// also this just returns the int value of the enum members of color
-	// i could make a function that takes and enum and returns its corresponding string name
+	// but if you look inside of NestedClass.cpp, inside of the member functions we can just use the name of the enumrator without ::
+
+	// you can also have nested typedefs and type aliases
+	// see NestedClass2 in NestedClass.h for an example of this
+
+	NestedClass2 nestedClass2{ 5 };
+
+	// -- 15.4 — Introduction to destructors -- (YAY DESTRUCTORS)
+
+	// constructors set up an object and initializes its members 
+	// a deconstructor does clean up before an object is destroyed
+
+	// think of a task where we must insure that some resource is released or some function must be ran before an object is destroyed
+	// like closing a connection to unallocating memeory that is the perpouse of a deconstructor
+
+	// see deconstructorExample.h and deconstructorExample.cpp for an example of this
+
+	deconstructorExample deconstructorExample{ 5, 5 };
+
+	// we can see with the output to the console setY() is called since the deconstructor is called before the object is destroyed
+	deconstructorExample.checkY();
+
+
 
 
 	return 0;

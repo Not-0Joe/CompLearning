@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="deconstructorExample.cpp" />
     <ClCompile Include="NestedClass.cpp" />
     <ClCompile Include="organizedClass.cpp" />
     <ClInclude Include="chaper14QuizClass.h" />
@@ -135,6 +136,7 @@
     <ClCompile Include="ConvertExplicit.cpp" />
     <ClCompile Include="ConvertPrint.cpp" />
     <ClInclude Include="ConversionClass.h" />
+    <ClInclude Include="deconstructorExample.h" />
     <ClInclude Include="ExplictClass.h" />
     <ClCompile Include="main.cpp" />
     <ClInclude Include="InlineClass.h" />
