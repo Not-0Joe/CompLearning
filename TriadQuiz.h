@@ -27,16 +27,12 @@ public:
 
 	Triad(T x, U y, P z) : m_x {x}, m_y {y}, m_z {z} {}
 
-	void print() const
-	{
-		std::cout << "[ " << m_x << ", " << m_y << ", " << m_z << " ]";
-	}
-
 	T first() const
 	{
 		return m_x;
 	}
 
+	void print() const;
 
 private:
 	T m_x{};
@@ -44,3 +40,10 @@ private:
 	P m_z{};
 
 };
+
+// defined outside of class as asked
+template <typename T, typename U, typename P>
+void Triad<T,U,P>::print() const
+{
+	std::cout << "[ " << m_x << ", " << m_y << ", " << m_z << " ]";
+}

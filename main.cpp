@@ -194,6 +194,7 @@ int main()
 
 	// see deconstructorExample.h and deconstructorExample.cpp for an example of this
 
+		// (commented out since it was doing weird stuff with io output might fix later)
 	// deconstructorExample deconstructorExample{ 5, 5 };
 	
 	// we can see with the in the output that y is = 5 since whats what our constructor is provided to init y
@@ -218,7 +219,7 @@ int main()
 
 	// Triad Quiz
 
-	std::cout << "Triad Quiz~~~~\n\n";
+	std::cout << "~~~~Triad Quiz~~~~\n";
 
 	Triad<int, int, int> t1{ 1, 2, 3 };
 	t1.print();
@@ -229,6 +230,12 @@ int main()
 	const Triad t2{ 1, 2.3, "Hello"s };
 	t2.print();
 	std::cout << '\n';
+
+	// const object triad needs to call a const member function so if we dropped the const on print it would not complie
+
+	// -- 15.6 — Static member variables -- 
+
+
 
 
 
