@@ -35,3 +35,4 @@ void NestedClass::printInfo() const
 	std::cout << "Blue = " << Blue << "\n";
 
 }
+

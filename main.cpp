@@ -12,6 +12,8 @@
 #include "InlineClass.h"
 #include "NestedClass.h"
 #include "deconstructorExample.h"
+#include "tempMemberFuncClass.h"
+#include "TriadQuiz.h"
 
 
 int main()
@@ -192,11 +194,41 @@ int main()
 
 	// see deconstructorExample.h and deconstructorExample.cpp for an example of this
 
-	deconstructorExample deconstructorExample{ 5, 5 };
+	// deconstructorExample deconstructorExample{ 5, 5 };
+	
+	// we can see with the in the output that y is = 5 since whats what our constructor is provided to init y
+	// then before the object is destroyed we set y to 1 as it must be set to one in this case to meet some condition
 
-	// we can see with the output to the console setY() is called since the deconstructor is called before the object is destroyed
-	deconstructorExample.checkY();
+	// -- Implicit deconstructor -- 
 
+	// if no user defined deconstructor is made the complier will just implicity add a deconstructor
+	// like how it will add an implicit default constructor if the object requires no clean up we can just use the implicit deconstructor
+
+	// -- 15.5 — Class templates with member functions -- 
+
+	// as we know we can use templates for the types of member variables and, templated types for functions
+	// we can also have templated member functions
+
+	// see tempMemberFuncClass.h
+
+	TempFuncClass tempFuncClass{ 5,};
+
+	tempFuncClass.setX(6);
+	tempFuncClass.setX2(7);
+
+	// Triad Quiz
+
+	std::cout << "Triad Quiz~~~~\n\n";
+
+	Triad<int, int, int> t1{ 1, 2, 3 };
+	t1.print();
+	std::cout << '\n';
+	std::cout << t1.first() << '\n';
+
+	using namespace std::literals::string_literals;
+	const Triad t2{ 1, 2.3, "Hello"s };
+	t2.print();
+	std::cout << '\n';
 
 
 

@@ -10,7 +10,7 @@ OrganizedClass::OrganizedClass(int x) : m_x{ x } {}
 
 void OrganizedClass::printX() const
 {
-	std::cout << "m_x = " << m_x << "\n";
+   std::cout << "m_x = " << m_x << "\n\n";
 }
 
 // single line member functions can be defined inside the class definition but larger member functions should be defined this way

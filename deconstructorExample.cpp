@@ -16,15 +16,19 @@ void deconstructorExample::setY()
 // we will use our deconstructor to call this function after setY
 void deconstructorExample::checkY() const
 {
-	std::cout << "Checking m_y Value this value should be 1 before the object is destroyed\n";
+  std::cout << "Checking m_y value: this should be 1 before the object is destroyed\n";
 	std::cout << "m_y = " << m_y << "\n";
 }
 
 deconstructorExample::~deconstructorExample()
 {
-	std::cout << "SetY() Called\n";
+ std::cout << "Calling setY()...\n";
 	setY();
-	std::cout << "CheckY() Called:\n";
+	std::cout << "Calling checkY()...\n";
 	checkY();
 }
+
+// now we can insure that the condition y = 1 will always be ture before the object is destroyed
+// this is very important if we were dealing with memory without a deconstructor we could allocate memory and never
+// unallocate it leading to the program slowly eating memory untill it crashes or undefined behavior 
 

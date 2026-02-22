@@ -2,5 +2,6 @@
 
 void convertExplictPrint(const Explicit& e)
 {
-	std::cout << "ConvertExplictPrint result:" << e.getX() << "\n\n";
+   std::cout << "ConvertExplicitPrint result: " << e.getX() << "\n";
+	std::cout << "\n";
 }
