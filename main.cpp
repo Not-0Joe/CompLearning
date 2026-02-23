@@ -14,6 +14,7 @@
 #include "deconstructorExample.h"
 #include "tempMemberFuncClass.h"
 #include "TriadQuiz.h"
+#include "StaticClass.h"
 
 
 int main()
@@ -235,8 +236,25 @@ int main()
 
 	// -- 15.6 — Static member variables -- 
 
+	// static member variables are shared by all objects of the class 
+
+	// setting static variable, access with class name and ::
+	StaticClass::m_x = 2;
+	
+	std::cout << "StaticClass's (static) member variable m_x = " << StaticClass::m_x << "\n";
+
+	// using a static member varible for class ids
+
+	StaticClass2 staticClass1{};
+	StaticClass2 staticClass2{};
+
+	// now we can check to see if there have there own ID
+
+	staticClass1.CheckObjectID();
+	staticClass2.CheckObjectID();
 
 
+	
 
 
 	return 0;
