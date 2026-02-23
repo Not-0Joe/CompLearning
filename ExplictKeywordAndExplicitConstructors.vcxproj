@@ -131,6 +131,7 @@
     <ClCompile Include="NestedClass.cpp" />
     <ClCompile Include="organizedClass.cpp" />
     <ClCompile Include="StaticClass.cpp" />
+    <ClInclude Include="NonMemberFriend.h" />
     <ClInclude Include="StaticClass.h" />
     <ClInclude Include="chaper14QuizClass.h" />
     <ClInclude Include="constexprClassExample.h" />

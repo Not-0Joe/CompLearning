@@ -7,7 +7,7 @@
 // eatch other variable since its the same
 
 
-// statics variables exist before and beyond the lifetime of the class the are like global variables inside the scope of the class
+// static variables exist before and beyond the lifetime of the class the are like global variables inside the scope of the class
 // like they were wrapped in a namespace
 
 // since they exsist independently of any class object they can be accessed using the class name and scope ::
