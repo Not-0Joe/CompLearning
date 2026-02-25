@@ -64,7 +64,7 @@ class BeMyFriend2
 {
 public:
 
-	explicit BeMyFriend2(int x) : m_x{ x } {}
+ explicit BeMyFriend2(int x) : m_x{ x } {}
 
  friend void print(const BeMyFriend& b1, const BeMyFriend2& b2);
 

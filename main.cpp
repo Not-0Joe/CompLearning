@@ -16,6 +16,12 @@
 #include "TriadQuiz.h"
 #include "StaticClass.h"
 #include "NonMemberFriend.h"
+#include "FriendClass.h"
+#include "FriendFunction.h"
+#include "Chapter15Quiz.h"
+
+
+
 
 
 int main()
@@ -58,8 +64,8 @@ int main()
 	// A constexpr member function can be called just like a normal function.
 	std::cout << constexprClass.getGreater() << "\n";
 
-	// A non-constexpr class object calling a constexpr member function.
-	// This works because constexpr member functions are "dual-use," meaning 
+    // A non-constexpr object calling a constexpr member function.
+	// This works because constexpr member functions are "dual-use," meaning
 	// they can be called by both constexpr and non-constexpr objects.
 	ConstexprClass constexprClass2{ 6, 7 };
 	std::cout << constexprClass2.getGreater() << "\n";
@@ -69,7 +75,7 @@ int main()
 	Point2d first{};
 	Point2d second{ 3.0, 4.0 };
 
-	// Point2d third{ 4.0 }; // Should error if uncommented (requires two arguments or default).
+    // Point2d third{ 4.0 }; // Should error if uncommented (requires two arguments or default constructor).
 
 	first.print();
 	second.print();
@@ -87,7 +93,7 @@ int main()
 
     // --- 15.1 — The hidden `this` pointer and member function chaining ---
 
-	// Inside every member function, the keyword `this` is a const pointer to the implicit object.
+    // Inside every member function, the keyword `this` is a pointer to the implicit object.
 
 	// `this` points to the implicit object and `->` is used to access its members.
 
@@ -123,7 +129,7 @@ int main()
 	organizedClass.printX();
 
     // It might be better to make `print` a non-member function in its own .cpp file,
-	// but this demonstrates separating a class declaration and its definitions.
+	// but this demonstrates separating a class declaration from its definitions.
 
     // -- inline member functions --
 
@@ -131,7 +137,7 @@ int main()
 	// the linker will see multiple definitions and fail. Member functions defined inside a class are implicitly inline,
 	// so they can be defined in headers safely.
 
-	// When the compiler inlines a function it may replace the call with the function body for performance.
+    // When the compiler inlines a function, it may replace the call with the function body for performance.
 
     // We saw how to split declarations and definitions. Member functions defined in a .cpp are not implicitly inline,
 	// but that is fine because the header does not include the .cpp, so the function has a single definition.
@@ -179,7 +185,7 @@ int main()
 	// Constructors initialize an object and its members.
 	// A destructor performs cleanup before an object is destroyed.
 
-	// Use a destructor to ensure resources are released or cleanup actions run when an object goes out of scope,
+	// Use a destructor to ensure resources are released or that cleanup actions run when an object goes out of scope,
 	// for example closing a connection or freeing memory.
 
 	// See `deconstructorExample.h` and `deconstructorExample.cpp` for an example.
@@ -193,7 +199,7 @@ int main()
     // -- Implicit destructor --
 
 	// If no user-defined destructor is provided, the compiler will generate one implicitly.
-	// Similar to the implicit default constructor, the implicit destructor is fine when no custom cleanup is required.
+	// Like the implicit default constructor, the implicit destructor is fine when no custom cleanup is required.
 
     // -- 15.5 — Class templates with member functions --
 
@@ -244,16 +250,15 @@ int main()
     // This demonstrates a shared static member used to provide a unique ID for each object created.
 	// Note: `auto` and CTAD are not applicable to static members in the same way as for local variables.
 
-	// -- 15.7 — Static member functions --
+    // -- 15.7 — Static member functions --
 
-
-    // Inside a class body, a `friend` declaration grants access to private members to another class or function.
+	// Inside a class body, a `friend` declaration grants access to private members to another class or function.
 
 	// See `NonMemberFriend.h`.
 
 	Stuff stuff{1};
 	
-	// calling non member function print
+    // Calling the non-member function `print`
 	print(stuff);
 
 	int storeValue{};
@@ -273,6 +278,48 @@ int main()
 	// The `friend` keyword is useful, but prefer non-member functions when possible.
 	// If a member function can be implemented as a non-member, prefer the non-member approach.
 	
+    // -- 15.9 — Friend classes and friend member functions --
+
+	// See `FriendClass.h`.
+
+	Data data{ 0,0 };
+
+	data.setID(5);
+	data.setValue(10);
+
+	Display display{};
+
+	display.displayID(data);
+	display.displayValue(data);
+
+    // Friendship is one-sided: even though `Display` is a friend of `Data` and can access its private members,
+	// that does not mean `Data` is a friend of `Display`. `Data` cannot access `Display`'s members unless
+	// `Display` explicitly grants friendship.
+	// Class friendship is also not transitive. If class A is a friend of B, and B is a friend of C, that does not make A a friend of C.
+
+    // Friend member functions
+
+	// See `FriendFunction.h`.
+
+	// I'll need to come back to this at some point. I hit a wall here and don't think the amount of boilerplate
+	// code needed to make one or more member functions friends of another class is worth the minor improvement in
+	// separation and data hiding. Unless I learn a good reason to do this, I'll just friend the entire class.
+
+	
+    // --- Chapter 15 Quiz ---
+
+	Monster skeleton{ Monster::skeleton, "Bones", "*rattle*", 4 };
+	skeleton.print();
+
+	Monster vampire{ Monster::vampire, "Nibblez", "*hiss*", 0 };
+	vampire.print();
+
+    // Did not finish the full implementation as the test requested, but I have more or less done this already in another project.
+
+	// -- 16.1 — Introduction to containers and arrays -- (after 16 chapter we get onto arrays lol)
+
+
+
 
 
 	return 0;
