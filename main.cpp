@@ -19,6 +19,8 @@
 #include "FriendClass.h"
 #include "FriendFunction.h"
 #include "Chapter15Quiz.h"
+#include <vector>
+#include "Vector.h"
 
 
 
@@ -99,7 +101,7 @@ int main()
 
 	// The compiler implicitly adds `this->` where needed.
 	Simple simple{ 5 };
-	// we explictly add this->3
+    // we explicitly add `this->` where needed
 	Simple2 simple2{ 6 };
 	// using this-> to disambiguate
 	simple2.printData(5);
@@ -108,7 +110,7 @@ int main()
 	Chains chains{ 5 };
 	chains.addX(10).addX(10).printX();
 
-	// using *this to reset an object to its default state
+    // Using `*this` to reset an object to its default state
 	chains.resetObject().printX();
 
     // `this` is a const pointer, so the pointer itself cannot be changed, but the object it points to can be modified.
@@ -193,8 +195,8 @@ int main()
 		// (commented out since it was doing weird stuff with io output might fix later)
 	// deconstructorExample deconstructorExample{ 5, 5 };
 	
-	// we can see with the in the output that y is = 5 since whats what our constructor is provided to init y
-	// then before the object is destroyed we set y to 1 as it must be set to one in this case to meet some condition
+    // We can see in the output that `y` is 5 because our constructor initialized `y` to that value.
+	// Before the object is destroyed we set `y` to 1 to satisfy a required condition.
 
     // -- Implicit destructor --
 
@@ -242,13 +244,13 @@ int main()
 	StaticClass2 staticClass1{};
 	StaticClass2 staticClass2{};
 
-	// now we can check to see if there have there own ID
+    // Now we can check whether each object has its own ID
 
 	staticClass1.CheckObjectID();
 	staticClass2.CheckObjectID();
 
     // This demonstrates a shared static member used to provide a unique ID for each object created.
-	// Note: `auto` and CTAD are not applicable to static members in the same way as for local variables.
+	// Note: `auto` and CTAD behave differently for static members than for local variables.
 
     // -- 15.7 — Static member functions --
 
@@ -258,7 +260,7 @@ int main()
 
 	Stuff stuff{1};
 	
-    // Calling the non-member function `print`
+    // Calling the non-member function `print`.
 	print(stuff);
 
 	int storeValue{};
@@ -295,15 +297,15 @@ int main()
     // Friendship is one-sided: even though `Display` is a friend of `Data` and can access its private members,
 	// that does not mean `Data` is a friend of `Display`. `Data` cannot access `Display`'s members unless
 	// `Display` explicitly grants friendship.
-	// Class friendship is also not transitive. If class A is a friend of B, and B is a friend of C, that does not make A a friend of C.
+	// Class friendship is also not transitive: if class A is a friend of B, and B is a friend of C, that does not make A a friend of C.
 
     // Friend member functions
 
 	// See `FriendFunction.h`.
 
-	// I'll need to come back to this at some point. I hit a wall here and don't think the amount of boilerplate
+    // I'll need to come back to this at some point. I hit a wall here and don't think the amount of boilerplate
 	// code needed to make one or more member functions friends of another class is worth the minor improvement in
-	// separation and data hiding. Unless I learn a good reason to do this, I'll just friend the entire class.
+	// separation and data hiding. Unless I learn a good reason to do this, I'll friend the entire class.
 
 	
     // --- Chapter 15 Quiz ---
@@ -318,6 +320,163 @@ int main()
 
 	// -- 16.1 — Introduction to containers and arrays -- (after 16 chapter we get onto arrays lol)
 
+
+	// containers 
+
+	// a container is a data type that provides storage of a large number of unnamed elements
+	// a string is a container it with unnamed elements the chars
+
+	// string message = "hello"  the name of the container is "message" and the unnamed elements are h,e,l,l,o
+
+	// the length of a container is the number of elements in the container so the length of our message would be 5	
+
+	// we can show this with string as it provides a length method to get the total number of elements
+
+	std::string message = "Hello";
+	std::cout << "lenth of the container message = " << message.length() << "\n";
+
+	// size is also used when descripting the ammout of elements in a container but we will perfer to use length when refering to the
+	// total number of elements inside of a container
+
+	// like a carton of eggs in real life (a container) you can preform oporations on it like picking a certain egg
+	// removing an egg, adding an egg ect
+	// containers in c++ have similar functions we can use
+
+	// containers inside of c++ are homogenous meaning the elements of a container are required to be the same type
+	// containers are mostly implemented with class templates so we dont need to make a new container to have elements of a diffent type
+
+	// arrays
+
+	// an array	is a container that stores data contiguously meaning eatch element is placed beside one another in memory with no gaps
+	// there are three types of arrys C sytle arrays, the standard array std::array, and std::vector
+
+	// we still start with a std::vector array
+
+	// std::vector is defined inside of the <vector> header so we will need to include it to make use of them 
+	// vector is defined as a class templated so we will need to supply the templated type we would like to use
+
+	std::vector<int> empty{};
+
+	// type is vector<int> to an array of int elements name is empty{} and it contains no elements
+	// we can init a vector with a list of values using list init inside of {}
+
+	std::vector<int> myVector{ 1,2,3,4,5 };
+	std::vector myOtherVector{ 'a','b','c' };
+
+	// we have explicity made myVector hold elements of type int
+	// and for myOtherVector we are using CTAD the complier will see its a list of char litreals and make it a char vector
+
+	// containers have a special constructor called the list constructor that does 3 things 
+		/*
+			Ensures the container has enough storage to hold all the initialization values (if needed).
+			Sets the length of the container to the number of elements in the initializer list (if needed).
+			Initializes the elements to the values in the initializer list (in sequential order).
+		
+		*/
+
+	// Accessing array elements using the subscript operator []
+
+	// arrarys index starts at 0 so the int value 1, is at index [0]
+	// when we access an element in this way it returns a refence to the element at that index
+	// arrary's start the element count at index 0 
+
+	// so element 1 is at index 0
+
+	std::cout << "Element 1 value = " << myVector[0] << "\t" << "Index[0] = " << myVector[0] << "\n";
+	std::cout << "Element 2 value = " << myVector[1] << "\t" << "Index[1] = " << myVector[1] << "\n";
+	std::cout << "Element 3 value = " << myVector[2] << "\t" << "Index[2] = " << myVector[2] << "\n";
+	std::cout << "Element 4 value = " << myVector[3] << "\t" << "Index[3] = " << myVector[3] << "\n";
+
+	// when we access an arry we must access 0 to N-1 meaning we must access within the bounds of the array
+	// the [] oporator does no bounds checking so if we try to access and index outside of the array it results in undefined behavior
+
+	// lets test it
+
+	std::vector testArry{ 1,2,3 };
+	 // std::cout << testArry[3];
+
+	// it asserts out 
+
+	// arrays are placed beside one another in memory with no gaps between them
+	// we can show this
+
+	std::vector<int> memoryArray{ 1,2,3,4,5 }; 
+	// we know that an int is 4 bytes so they will be 4 bytes apart
+
+	std::cout << &memoryArray[0] << "\n";
+	std::cout << &memoryArray[1] << "\n";
+	std::cout << &memoryArray[2] << "\n";
+	std::cout << &memoryArray[3] << "\n";
+	std::cout << &memoryArray[4] << "\n";
+
+	// Constructing a std::vector of a specific length
+
+	// what if we wanted to make an array that holds 100 int elements
+	// it would be really annoying and not practical to use an init list since we would need to type of 100 values
+	
+	// std::vector has an explicit constructor (explicit std::vector<T>(std::size_t)
+	// T will be the type we define <int>, <double> ect, and std::size_t will be the length of the array
+
+	std::vector<short> largeArry(100);
+	
+	// we need to take a moment to understand the diffrent types of initlzation
+
+	// there are four core ways to initialize a variable this will cover all 4
+
+	// Default Initialization
+	// the value is undefined avoid it just holds a garbage value prone to error
+	int x; 
+
+	// Copy Initialization
+	// the complier takes the value and copy's it into the variable, the 5 is then destroyed
+	int x2 = 5;
+
+	// Direct Initialization
+	// permits explict converstion
+	// removes the = sign
+	// can narrow (data loss) double to int would drop the fraction 1.1 becomes 1
+	int x3(10);
+
+	// Direct List Initialization:
+	// prevents narrowing
+	// will init to 0 if left empty
+	int x4{ 5 };
+
+	// now for arrarys we need to understand some things
+
+	// Non-empty initializer lists prefer list constructors
+	// consider std::vector<int> vec{10}
+
+    // Ambiguity: what does `std::vector<int> v{10};` mean?
+	// - As a brace-initializer it prefers the initializer-list constructor, so `std::vector<int> v{10};`
+	//   constructs a vector with one element whose value is 10.
+	// - To construct a vector with 10 default-initialized elements (zeros for `int`) use the
+	//   size constructor with parentheses: `std::vector<int> v(10);`.
+	// 
+	// Recommendation: write your intent explicitly — use braces for element lists and
+	// parentheses for a size-based constructor.
+
+	// so {value} = one element holding the value
+	// if we wanted more elements in the list we can just add them {value, value2, value3} and so on
+	// and (value) = value is the number of defualt-value init elements
+
+	// side note direct init is not allowed for member defualt initzers so inside a class if we wanted to init a vector
+
+	// if we were inside a class
+	// std::vector<int> v{ std::vector<int>(8) };
+
+	// creates a int arrary with a size of 8 of init v
+
+	// --- std::vector can be made const --- 
+
+	const std::vector<int> v{ 1,2,3 }; 
+	// const vectors must be init when created, and there elements of a const vector can not be modified
+	// vectors can not be made constexpr, so if we need an arrary to be constexpr, use std::array
+
+	// will put the implementation of quiz inside of vector.h class
+
+
+	getUserSum();
 
 
 
