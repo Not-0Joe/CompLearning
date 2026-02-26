@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ConstexprIntConvert.h" />
     <ClCompile Include="deconstructorExample.cpp" />
     <ClCompile Include="NestedClass.cpp" />
     <ClCompile Include="organizedClass.cpp" />
@@ -135,6 +136,8 @@
     <ClInclude Include="FriendClass.h" />
     <ClInclude Include="FriendFunction.h" />
     <ClInclude Include="NonMemberFriend.h" />
+    <ClInclude Include="PassingVec.h" />
+    <ClInclude Include="SelfTest.h" />
     <ClInclude Include="StaticClass.h" />
     <ClInclude Include="chaper14QuizClass.h" />
     <ClInclude Include="constexprClassExample.h" />

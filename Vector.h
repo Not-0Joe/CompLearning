@@ -55,3 +55,4 @@ void getUserSum()
 // then use cin and use [] the access the element and the value = what index we are accessing
 
 
+// we could have chained cin >> to one line the above

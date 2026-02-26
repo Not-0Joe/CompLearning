@@ -21,6 +21,8 @@
 #include "Chapter15Quiz.h"
 #include <vector>
 #include "Vector.h"
+#include "PassingVec.h"
+#include "SelfTest.h"
 
 
 
@@ -28,8 +30,9 @@
 
 int main()
 {
-	// Testing if passing an int to a function that takes a 'Convert' class 
+    // Testing if passing an int to a function that takes a 'Convert' class 
 	// will trigger the use of the user-defined converting constructor.
+	std::cout << "\n===== Convert / Converting-constructor test =====\n";
 	convertPrint(5);
 
     // `convertPrint` is called with an int argument. Since `convertPrint` expects a `Convert` object,
@@ -37,6 +40,7 @@ int main()
 	// converts the int into a `Convert` object, and passes that object as the argument.
 
     // --- Testing the use of a class with the 'explicit' keyword ---
+	std::cout << "\n===== Explicit constructor test =====\n";
 
 	// Works like a normal constructor, initializing the members of `imExplicit`.
 	Explicit imExplicit{ 5, 5 };
@@ -58,7 +62,8 @@ int main()
 	   you may consider making it non-explicit. */
 
 
-	// --- 14.17 — Constexpr classes ---
+    // --- 14.17 — Constexpr classes ---
+	std::cout << "\n===== Constexpr class test =====\n";
 
 	// A constexpr class object.
 	constexpr ConstexprClass constexprClass{ 5, 6 };
@@ -72,7 +77,8 @@ int main()
 	ConstexprClass constexprClass2{ 6, 7 };
 	std::cout << constexprClass2.getGreater() << "\n";
 
-	// --- CHAPTER 14 QUIZ ---
+    // --- CHAPTER 14 QUIZ ---
+	std::cout << "\n===== Chapter 14 quiz =====\n";
 
 	Point2d first{};
 	Point2d second{ 3.0, 4.0 };
@@ -94,6 +100,7 @@ int main()
 	std::cout << "\n";
 
     // --- 15.1 — The hidden `this` pointer and member function chaining ---
+	std::cout << "\n===== This pointer & chaining (Chapter 15.1) =====\n";
 
     // Inside every member function, the keyword `this` is a pointer to the implicit object.
 
@@ -118,6 +125,7 @@ int main()
 	// In languages like Java and C#, `this` behaves more like a reference.
 
     // -- 15.2 — Classes and header files --
+	std::cout << "\n===== Classes and header files (Chapter 15.2) =====\n";
 
 	// As programs grow, we split code across multiple files. Place class declarations in headers and function definitions in .cpp files.
 	// We can use the same approach for separating class declarations and member function definitions.
@@ -134,6 +142,7 @@ int main()
 	// but this demonstrates separating a class declaration from its definitions.
 
     // -- inline member functions --
+	std::cout << "\n===== Inline member functions =====\n";
 
 	// Functions are not ODR-exempt: if a non-inline function is defined in a header included by multiple .cpp files,
 	// the linker will see multiple definitions and fail. Member functions defined inside a class are implicitly inline,
@@ -214,8 +223,8 @@ int main()
 	tempFuncClass.setX(6);
 	tempFuncClass.setX2(7);
 
-	// Triad Quiz
-
+    // Triad Quiz
+	std::cout << "\n===== Triad quiz =====\n";
 	std::cout << "~~~~Triad Quiz~~~~\n";
 
 	Triad<int, int, int> t1{ 1, 2, 3 };
@@ -231,6 +240,7 @@ int main()
     // A const `Triad` object must call a const member function. If `print` were not const, this would not compile.
 
     // -- 15.6 — Static member variables --
+	std::cout << "\n===== Static member variables (Chapter 15.6) =====\n";
 
 	// Static member variables are shared across all objects of a class.
 
@@ -253,14 +263,16 @@ int main()
 	// Note: `auto` and CTAD behave differently for static members than for local variables.
 
     // -- 15.7 — Static member functions --
+	std::cout << "\n===== Static member functions (Chapter 15.7) =====\n";
 
 	// Inside a class body, a `friend` declaration grants access to private members to another class or function.
 
 	// See `NonMemberFriend.h`.
 
-	Stuff stuff{1};
-	
-    // Calling the non-member function `print`.
+    Stuff stuff{1};
+
+	std::cout << "\n----- Non-member friend functions -----\n";
+	// Calling the non-member function `print`.
 	print(stuff);
 
 	int storeValue{};
@@ -281,6 +293,7 @@ int main()
 	// If a member function can be implemented as a non-member, prefer the non-member approach.
 	
     // -- 15.9 — Friend classes and friend member functions --
+	std::cout << "\n===== Friend classes & member functions (Chapter 15.9) =====\n";
 
 	// See `FriendClass.h`.
 
@@ -300,15 +313,17 @@ int main()
 	// Class friendship is also not transitive: if class A is a friend of B, and B is a friend of C, that does not make A a friend of C.
 
     // Friend member functions
+	std::cout << "\n----- Friend member functions -----\n";
 
 	// See `FriendFunction.h`.
 
-    // I'll need to come back to this at some point. I hit a wall here and don't think the amount of boilerplate
+	// I'll need to come back to this at some point. I hit a wall here and don't think the amount of boilerplate
 	// code needed to make one or more member functions friends of another class is worth the minor improvement in
 	// separation and data hiding. Unless I learn a good reason to do this, I'll friend the entire class.
 
 	
     // --- Chapter 15 Quiz ---
+	std::cout << "\n===== Chapter 15 quiz =====\n";
 
 	Monster skeleton{ Monster::skeleton, "Bones", "*rattle*", 4 };
 	skeleton.print();
@@ -318,8 +333,8 @@ int main()
 
     // Did not finish the full implementation as the test requested, but I have more or less done this already in another project.
 
-	// -- 16.1 — Introduction to containers and arrays -- (after 16 chapter we get onto arrays lol)
-
+    // -- 16.1 — Introduction to containers and arrays -- (after 16 chapter we get onto arrays lol)
+	std::cout << "\n===== Containers & arrays (Chapter 16.1) =====\n";
 
 	// containers 
 
@@ -333,7 +348,7 @@ int main()
 	// we can show this with string as it provides a length method to get the total number of elements
 
 	std::string message = "Hello";
-	std::cout << "lenth of the container message = " << message.length() << "\n";
+	std::cout << "length of the container 'message' = " << message.length() << "\n";
 
 	// size is also used when descripting the ammout of elements in a container but we will perfer to use length when refering to the
 	// total number of elements inside of a container
@@ -407,7 +422,9 @@ int main()
 	std::cout << &memoryArray[1] << "\n";
 	std::cout << &memoryArray[2] << "\n";
 	std::cout << &memoryArray[3] << "\n";
-	std::cout << &memoryArray[4] << "\n";
+    std::cout << &memoryArray[4] << "\n";
+
+	std::cout << "\n----- Constructing vectors -----\n";
 
 	// Constructing a std::vector of a specific length
 
@@ -475,10 +492,188 @@ int main()
 
 	// will put the implementation of quiz inside of vector.h class
 
-
+	// for quiz
 	getUserSum();
 
+	// -- 16.3 — std::vector and the unsigned length and subscript problem --
 
+	/*Let’s start with an assertion: 
+	the data type used for subscripting an array should match the data type used for storing the length of the array. This is so that all elements in the longest possible array can be indexed, and no more.
+	As Bjarne Stroustrup recalls, when the container classes in the C++ standard library was being designed (circa 1997), the designers had to choose whether to make the length (and array subscripts) signed or unsigned. They chose to make them unsigned.
+	The reasons given for this: the subscripts of the standard library array types can’t be negative, using an unsigned type allows arrays of greater length due to the extra bit (something that was important in the 16-bit days), and range-checking the subscript requires one conditional check instead of two (since no check was needed to ensure the index was less than 0).
+	In retrospect, this is generally regarded as having been the wrong choice. We now understand that using unsigned values to try to enforce non-negativity doesn’t work due to the implicit conversion rules (since a negative signed integer will just implicitly convert to a large unsigned integer, producing a garbage result), the extra bit of range typically isn’t needed on 32-bit or 64-bit systems (since you probably aren’t creating arrays with more than 2 billion elements), and the commonly used operator[] doesn’t do range-checking anyway.
+	In lesson 4.5 -- Unsigned integers, and why to avoid them, we discussed the reasons why we prefer to use signed values to hold quantities. We also noted that mixing signed and unsigned values is a recipe for unexpected behavior. So the fact that the standard library container classes use unsigned values for the length (and indices) is problematic, as it makes it impossible to avoid unsigned values when using these types.*/
+
+
+    // -- A review: sign conversions are narrowing conversions, except when constexpr --
+	std::cout << "\n----- Sign conversions & constexpr -----\n";
+
+	// sign converstion is considerd narrowing,  since unsigned to signed would result in the loss of data
+	// when such convertion is prefromed at runtime the complier will issue an error in contexts where narrowing is disallowed
+	// like direct list init {}
+
+	/*void foo(unsigned int) {}
+
+    int s { 5 };
+
+    [[maybe_unused]] unsigned int u { s }; // compile error: list initialization disallows narrowing conversion
+    foo(s);                                // possible warning: copy initialization allows narrowing conversion*/
+
+	// but if the sign converted is constexpr and can be converted to an equivalent value its not considerd narrowing since the complier
+	// can garantee that it will be a safe converstion 
+
+	// see ConstexprIntConvert.h for an example 
+
+	//  -- The length and indices of std::vector have type size_type ---
+	
+	// std::size_t is a typedef for some large unsigned intergral type, unsigned long, or unsigned long long
+	// eatch of the standard libs container class's defines a nested typedef member named size_type, size_type is an alias for the type used
+	// for the length and indices of the container size_type is almost always an alias for std::size_t 
+
+    // --- Getting the length of a std::vector using the size() member function or std::size() ---
+	std::cout << "\n----- Vector size() examples -----\n";
+
+	// we can use the size() member function to return the length of the arrary
+	std::vector<int> v2{ 1,2,3 };
+	std::cout << "length of v2 = " << v2.size() << "\n";
+
+	// if we want to store the length of an array inside of a variable
+	// it would result in a sign converstion simple way to not get an error would be to use static_cast
+
+	int lengthOfV2 = static_cast<int>(v2.size());
+
+	std::cout << lengthOfV2 << "\n";
+
+    // accessing array elements using the at() member function does runtime bounds checking
+
+	// should print 3
+	std::cout << v2.at(2) << "\n";
+
+    // while at() does bounds checking and is safer, it is slower than [] so [] is used most of the time
+
+	// we can do indexing with a constexper singed int
+
+	constexpr int index = 1;
+	std::cout << v2[index]; // does implict convert to std::size_t not a narrowing since the constxper
+
+	// indexing with non constexper value
+
+	std::size_t index2 = 0;
+	// since [] expects an index of type std::size_t no converstion is needed
+	std::cout << v2[index2];
+
+	// but we want to avoid using unsiged types to hold values when possible so this is not ideal
+
+	// when our subscript type is a non-constexpr signed value we have problems
+
+	int index3 = 1;
+	std::cout << v2[index3] << "\n";
+
+
+
+	// the complier considers this narrowing at runtime, even tho a non-negative int conveted to an unsigned int would safely convert
+	// the complier can produce a warning, and if u end up indexing like this lot it can produce lots of warnings
+
+	// we can use static_cast to cast the int into a std::size_t but that also clutters the code base so its more ideal to
+	// make a the index variable of std::size_t and only use it for indexing to prevent warning
+
+    // Doing quiz for 16.3 
+
+	std::cout << "\n===== Vector quiz (Chapter 16.3) =====\n";
+
+	/*Question #1
+
+	Initialize a std::vector with the following values: ‘h’, ‘e’, ‘l’, ‘l’, ‘o’. Then print the length of the array (use std::size()). Finally, print the value of the element with index 1 using the subscript operator and the at() member function.	
+	The program should output the following:*/
+
+	/*The array has 5 elements.
+	ee*/
+
+    std::vector<char> vecQuiz{ 'h','e','l','l','0' };
+	std::cout << "the array has " << vecQuiz.size() << " elements\n";
+	std::cout << "vecQuiz[1] = " << vecQuiz[1] << "  vecQuiz.at(1) = " << vecQuiz.at(1) << "\n";
+
+	/*Question #2
+
+	a) What is size_type and what is it used for?*/
+
+	// it is a type alias for std::stize_t used to store the length and indices
+
+	/*b) What type does size_type default to? Is it signed or unsigned?*/
+
+	// unsigned
+
+	/*c) Which functions to get the length of a container return size_type?*/
+
+	// size()
+
+
+    // -- 16.4 — Passing std::vector -- 
+	std::cout << "\n===== Passing vectors (Chapter 16.4) =====\n";
+
+	// see PassingVec.h
+
+	passMeVecT(chimp);
+	passMeVecT(chimp2);
+
+	// should output 1 and 1.5 
+
+
+	std::cout << "\n===== Passing vectors (Chapter 16.4) QUIZ RESULTS  =====\n";
+
+	std::vector PassQuiz{ 0, 1, 2, 3, 4 };
+	printElement(PassQuiz, 2);
+	printElement(PassQuiz, 5);
+
+	std::vector PassQuiz2{ 1.1, 2.2, 3.3 };
+	printElement(PassQuiz2, 0);
+	printElement(PassQuiz2, -1);
+
+
+	std::cout << "===== 16.5 — Returning std::vector, and an introduction to move semantics ==== \n";
+
+	// holy molly a whole lot of technical yappin for that section
+
+	// more or less the ownership of an object can be trasfered to another object
+	// and vectors retrun by value, using move samantics trasfering the ownership and elements to a the new object
+	// can trasfering ownership is faster than copying the whole vector
+
+	// so when its possible the complier will use move samantics 
+
+	// moving on if this is for some reason relevent later i will revist it but for that sake of time im moveing on
+
+	std::cout << "===== 16.6 — Arrays and loops ==== \n";
+
+	// we can use for loops to iterate over an array 
+	
+	// lets say we want the Cumulative Sum of 100 elements and we want to add the values to every element 0 = 1, 1 = 2 and so on
+	std::vector<int> sumVec(100);
+	std::size_t length = sumVec.size();
+
+	int cumulativeSum{ 0 };
+
+	// for (initialization; condition; update)
+	for (std::size_t index{ 0 }; index < length; index++)
+	{
+		// 1. Set the value in the vector
+		sumVec[index] = static_cast<int>(index);
+
+		// 2. Immediately add that value to our running total
+		cumulativeSum += sumVec[index];
+	}
+
+	std::cout << "Total Sum: " << cumulativeSum << "\n";
+	
+	 
+	// doing a self test inside of SelfTest.h
+
+	std::vector<int> dimSum{ 5, 35, 56, 67 };
+	std::vector <double> dimSumYum{ 4.3, 3.7, 77.5, 12.6 };
+
+	std::cout << "Results of Self Test:\n";
+
+	std::cout << "sum of dimSum = " << GetVectorSum(dimSum) << "\n";
+	std::cout << "sum of dimSumYum = " << GetVectorSum(dimSumYum) << "\n";
 
 
 	return 0;
