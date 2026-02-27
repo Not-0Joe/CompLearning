@@ -684,5 +684,13 @@ int main()
 
 	arrSort(arr);
 
+	std::cout << "\n ===== RESULTS OF EXTRA CREDIT QUIZ =====\n";
+
+	// make function able to handle other types like a double
+
+	std::vector<double> dArray{ 5.3, 36.5, 6.4, 7.1, 4.6, 12.2 };
+
+	arraySortv2(dArray);
+
 	return 0;
 }

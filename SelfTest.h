@@ -124,3 +124,90 @@ void arrSort(const std::vector<T> arr)
 	}
 
 }
+
+/*Question #4
+
+Extra credit: Modify the prior program so that it can handle a std::vector containing non-int numeric values, 
+such as std::vector arr{ 4.4, 6.6, 7.7, 3.3, 8.8, 2.2, 1.1, 9.9 };.*/
+
+template <typename T>
+void arraySortv2(const std::vector<T>& arr)
+{
+
+	std::size_t  length = arr.size();
+	T userInput{0};
+	
+	std::cout << "Please Enter a value to find inside of the array \n";
+	
+	for (std::size_t index{ 0 }; index < length; index++)
+	{
+		std::cout << arr[index] << ", ";
+	}
+
+	std::cout << "\nValue to look for: ";
+
+	while (true)
+	{
+		std::cin >> userInput;
+
+		if (userInput < 0 || userInput > length)
+		{
+			std::cout << "Out of Bounds try again\n";
+		}
+		else if (!std::cin) // if invalid input
+		{
+			std::cout << "Invalid Enter a number\n";
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
+		else
+		{
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			break;
+		}
+	}
+
+	// walk the arrary see if the value of the userinput == index print the element number
+	// if not found inside of the arrary print error
+
+	bool found = false;
+	for (std::size_t index{ 0 }; index < length; index++)
+	{
+		
+		if (userInput == arr[index])
+		{
+			std::cout << "Value was found inside of arrary!!!!\n";
+			std::cout << "Value " << userInput << " is at index " << index << "\n";
+			found = true;
+		}
+
+	}
+
+	if (found == false)
+	{
+		std::cout << "Value could not be found inside of array :(\n";
+	}
+
+}
+
+
+
+/*Question #5
+
+Write a function template to find the largest value in a std::vector. If the vector is empty, return the default value for the element type.*/
+
+/*The following code should execute:
+
+int main()
+{
+    std::vector data1 { 84, 92, 76, 81, 56 };
+    std::cout << findMax(data1) << '\n';
+
+    std::vector data2 { -13.0, -26.7, -105.5, -14.8 };
+    std::cout << findMax(data2) << '\n';
+
+    std::vector<int> data3 { };
+    std::cout << findMax(data3) << '\n';
+
+    return 0;
+}*/
