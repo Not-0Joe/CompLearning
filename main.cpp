@@ -665,7 +665,7 @@ int main()
 	std::cout << "Total Sum: " << cumulativeSum << "\n";
 	
 	 
-	// doing a self test inside of SelfTest.h
+	// doing a self test inside of SelfTest.h, and the test for 16.6 also
 
 	std::vector<int> dimSum{ 5, 35, 56, 67 };
 	std::vector <double> dimSumYum{ 4.3, 3.7, 77.5, 12.6 };
@@ -675,6 +675,14 @@ int main()
 	std::cout << "sum of dimSum = " << GetVectorSum(dimSum) << "\n";
 	std::cout << "sum of dimSumYum = " << GetVectorSum(dimSumYum) << "\n";
 
+	// chaper 16.6 quiz
+
+	std::vector arr{ 4, 6, 7, 3, 8, 2, 1, 9 };
+
+	std::cout << "Result of Question #1 \n";
+	PrintVecQuiz(arr);
+
+	arrSort(arr);
 
 	return 0;
 }
